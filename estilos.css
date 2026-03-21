@@ -43,7 +43,7 @@ h1 {
 
 .color.bloqueado { background-color: #e0e0e0; }
 .color.disponible { background-color: #bae1ff; } /* Celeste pastel */
-.color.aprobado { background-color: #ffb3ba; } /* Rosado pastel */
+.color.aprobado { background-color: #fbe3e3; }
 
 #malla-container {
     display: flex;
@@ -107,7 +107,7 @@ h1 {
 }
 
 .ramo.aprobado {
-    background-color: #ffb3ba;
+    background-color: #fbe3e3;
     color: #800015;
     cursor: pointer;
     box-shadow: inset 0 3px 5px rgba(0,0,0,0.1);
