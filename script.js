@@ -1,0 +1,158 @@
+// Definición de las agrupaciones por nivel para los pre-requisitos masivos
+const n1 = ['alg1', 'cal1', 'ipe1', 'tdh'];
+const n2 = ['ing1', 'alg2', 'cal2', 'ipe2', 'comp1', 'teoe'];
+const n3 = ['ing2', 'alglin', 'cal3', 'calprob', 'comp2', 'uso'];
+const n4 = ['ing3', 'compcal', 'infest', 'comp3', 'fis', 'ici'];
+const n5 = ['ing4', 'teoprob', 'mues', 'modlin', 'enp'];
+const n6 = ['procest', 'dae', 'metmul', 'simest', 'etica'];
+const n7 = ['sdt', 'diae', 'elec1', 'bio', 'eco'];
+const n8 = ['indlab', 'tal1', 'elec2', 'elec3', 'concos'];
+const n9 = ['tal2', 'elec4', 'sem1', 'evaproy'];
+
+const ramosMalla = [
+    { nivel: 1, id: 'alg1', nombre: 'Álgebra 1', pre: [] },
+    { nivel: 1, id: 'cal1', nombre: 'Cálculo 1', pre: [] },
+    { nivel: 1, id: 'ipe1', nombre: 'Introducción a la Probabilidad y Estadística 1', pre: [] },
+    { nivel: 1, id: 'tdh', nombre: 'Taller de desarrollo de habilidades', pre: [] },
+
+    { nivel: 2, id: 'ing1', nombre: 'Inglés 1', pre: ['tdh'] },
+    { nivel: 2, id: 'alg2', nombre: 'Álgebra 2', pre: ['alg1'] },
+    { nivel: 2, id: 'cal2', nombre: 'Cálculo 2', pre: ['cal1'] },
+    { nivel: 2, id: 'ipe2', nombre: 'Introducción a la prob. y estadística 2', pre: ['ipe1'] },
+    { nivel: 2, id: 'comp1', nombre: 'Computación 1', pre: ['alg1'] },
+    { nivel: 2, id: 'teoe', nombre: 'Técnicas de la expresión oral y escritas', pre: ['tdh'] },
+
+    { nivel: 3, id: 'ing2', nombre: 'Inglés 2', pre: ['ing1'] },
+    { nivel: 3, id: 'alglin', nombre: 'Álgebra lineal', pre: ['alg2'] },
+    { nivel: 3, id: 'cal3', nombre: 'Cálculo 3', pre: ['cal2'] },
+    { nivel: 3, id: 'calprob', nombre: 'Cálculo de probabilidades', pre: ['ipe2', 'cal2'] },
+    { nivel: 3, id: 'comp2', nombre: 'Computación 2', pre: ['comp1'] },
+    { nivel: 3, id: 'uso', nombre: 'Uso de software estadístico', pre: ['ipe2'] },
+
+    { nivel: 4, id: 'ing3', nombre: 'Inglés 3', pre: ['ing2'] },
+    { nivel: 4, id: 'compcal', nombre: 'Complementos de cálculo', pre: ['cal3', 'alglin'] },
+    { nivel: 4, id: 'infest', nombre: 'Inferencia estadística', pre: ['calprob'] },
+    { nivel: 4, id: 'comp3', nombre: 'Computación 3', pre: ['comp2'] },
+    { nivel: 4, id: 'fis', nombre: 'Física general', pre: ['cal3', 'alglin'] },
+    { nivel: 4, id: 'ici', nombre: 'Introducción a las cs. de la ingeniería', pre: ['alglin'] },
+
+    { nivel: 5, id: 'ing4', nombre: 'Inglés 4', pre: ['ing3'] },
+    { nivel: 5, id: 'teoprob', nombre: 'Teoría de la probabilidad', pre: ['calprob', 'compcal'] },
+    { nivel: 5, id: 'mues', nombre: 'Muestreo', pre: ['infest'] },
+    { nivel: 5, id: 'modlin', nombre: 'Modelos lineales', pre: ['alglin', 'infest'] },
+    { nivel: 5, id: 'enp', nombre: 'Estadística no paramétrica', pre: ['infest'] },
+
+    { nivel: 6, id: 'procest', nombre: 'Procesos estocásticos', pre: ['teoprob'] },
+    { nivel: 6, id: 'dae', nombre: 'Diseño y análisis de encuestas', pre: ['enp', 'mues'] },
+    { nivel: 6, id: 'metmul', nombre: 'Métodos multivariantes', pre: ['modlin'] },
+    { nivel: 6, id: 'simest', nombre: 'Simulación estadística', pre: ['infest', 'comp3', 'teoprob'] },
+    { nivel: 6, id: 'etica', nombre: 'Ética estadística', pre: [...n1, ...n2, ...n3, ...n4, 'enp'] },
+
+    { nivel: 7, id: 'sdt', nombre: 'Series de tiempo', pre: ['procest'] },
+    { nivel: 7, id: 'diae', nombre: 'Diseño y análisis de experimentos', pre: ['modlin', 'dae'] },
+    { nivel: 7, id: 'elec1', nombre: 'Electivo 1', pre: ['metmul'] },
+    { nivel: 7, id: 'bio', nombre: 'Bioestadística', pre: ['metmul'] },
+    { nivel: 7, id: 'eco', nombre: 'Economía', pre: [...n1, ...n2, ...n3, ...n4, ...n5, 'etica'] },
+
+    { nivel: 8, id: 'indlab', nombre: 'Inducción laboral', pre: [...n1, ...n2, ...n3, ...n4, ...n5] },
+    { nivel: 8, id: 'tal1', nombre: 'Taller 1', pre: ['sdt', 'bio', 'diae'] },
+    { nivel: 8, id: 'elec2', nombre: 'Electivo 2', pre: ['metmul'] },
+    { nivel: 8, id: 'elec3', nombre: 'Electivo 3', pre: [...n1, ...n2, ...n3, ...n4, ...n5, 'metmul'] },
+    { nivel: 8, id: 'concos', nombre: 'Contabilidad y costos', pre: ['eco'] },
+
+    { nivel: 9, id: 'tal2', nombre: 'Taller 2', pre: ['tal1'] },
+    { nivel: 9, id: 'elec4', nombre: 'Electivo 4', pre: [...n1, ...n2, ...n3, ...n4, ...n5, 'metmul'] },
+    { nivel: 9, id: 'sem1', nombre: 'Seminario de tesis 1', pre: [...n1, ...n2, ...n3, ...n4, ...n5, ...n6, ...n7, ...n8] },
+    { nivel: 9, id: 'evaproy', nombre: 'Evaluación de proyectos', pre: ['concos'] },
+
+    { nivel: 10, id: 'sem2', nombre: 'Seminario de tesis 2', pre: [...n1, ...n2, ...n3, ...n4, ...n5, ...n6, ...n7, ...n8, ...n9] },
+    { nivel: 10, id: 'comint', nombre: 'Comunicación integral y liderazgo', pre: [...n1, ...n2, ...n3, ...n4, ...n5, ...n6, ...n7, ...n8, ...n9] }
+];
+
+// Estado global de ramos aprobados
+let aprobados = new Set();
+
+// Función principal para iniciar la malla
+function init() {
+    renderizarMalla();
+    actualizarEstados();
+}
+
+function renderizarMalla() {
+    const contenedor = document.getElementById('malla-container');
+    
+    for (let i = 1; i <= 10; i++) {
+        const columna = document.createElement('div');
+        columna.className = 'nivel-columna';
+        
+        const titulo = document.createElement('div');
+        titulo.className = 'nivel-titulo';
+        titulo.textContent = `Nivel ${i}`;
+        columna.appendChild(titulo);
+
+        const ramosNivel = ramosMalla.filter(r => r.nivel === i);
+        ramosNivel.forEach(ramo => {
+            const divRamo = document.createElement('div');
+            divRamo.className = 'ramo bloqueado';
+            divRamo.id = ramo.id;
+            divRamo.textContent = ramo.nombre;
+            
+            divRamo.addEventListener('click', () => toggleRamo(ramo.id));
+            columna.appendChild(divRamo);
+        });
+
+        contenedor.appendChild(columna);
+    }
+}
+
+// Verifica si un ramo cumple todos sus pre-requisitos
+function cumpleRequisitos(idRamo) {
+    const ramo = ramosMalla.find(r => r.id === idRamo);
+    if (!ramo) return false;
+    return ramo.pre.every(preReq => aprobados.has(preReq));
+}
+
+// Maneja el clic en un ramo
+function toggleRamo(idRamo) {
+    if (aprobados.has(idRamo)) {
+        // Si está aprobado, lo desmarcamos
+        aprobados.delete(idRamo);
+    } else {
+        // Solo lo podemos aprobar si cumple los requisitos
+        if (cumpleRequisitos(idRamo)) {
+            aprobados.add(idRamo);
+        }
+    }
+    
+    // Cascada de validación: si desaprobamos algo, debemos bloquear todo lo que dependía de ello
+    let huboCambios = true;
+    while (huboCambios) {
+        huboCambios = false;
+        for (let id of aprobados) {
+            if (!cumpleRequisitos(id)) {
+                aprobados.delete(id);
+                huboCambios = true; // Se desaprobó algo, volvemos a revisar todo
+            }
+        }
+    }
+
+    actualizarEstados();
+}
+
+// Actualiza las clases CSS en base al estado actual
+function actualizarEstados() {
+    ramosMalla.forEach(ramo => {
+        const elemento = document.getElementById(ramo.id);
+        
+        if (aprobados.has(ramo.id)) {
+            elemento.className = 'ramo aprobado';
+        } else if (cumpleRequisitos(ramo.id)) {
+            elemento.className = 'ramo disponible';
+        } else {
+            elemento.className = 'ramo bloqueado';
+        }
+    });
+}
+
+// Iniciar al cargar
+document.addEventListener('DOMContentLoaded', init);
