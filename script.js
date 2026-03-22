@@ -183,8 +183,15 @@ function actualizarEstados() {
             } else {
                 elemento.className = 'ramo reprobado';
             }
-            // Muestra todas las notas separadas por una barrita
-            elementoNota.textContent = `Notas: ${notas.join(' | ')}`;
+            
+            // Revisa cada nota y le pone rojo si es menor a 4.0, o negro si es azul
+            const notasConColor = notas.map(nota => {
+                const colorTexto = nota < 4.0 ? '#cc0000' : '#000000'; 
+                return `<span style="color: ${colorTexto};">${nota.toFixed(1)}</span>`;
+            });
+            
+            // Pega las notas coloreadas en el cuadrito usando innerHTML
+            elementoNota.innerHTML = `Notas: ${notasConColor.join(' | ')}`;
             elementoNota.style.display = 'block';
         } else if (cumpleRequisitos(ramo.id)) {
             elemento.className = 'ramo disponible';
