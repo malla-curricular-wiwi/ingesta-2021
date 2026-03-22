@@ -1,151 +1,46 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background-color: #fdfaf6; color: #333; padding: 20px; }
+header { text-align: center; margin-bottom: 20px; }
+h1 { color: #5a4b81; margin-bottom: 15px; }
 
-body {
-    background-color: #fdfaf6;
-    color: #333;
-    padding: 20px;
-}
-
-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-h1 {
-    color: #5a4b81;
-    margin-bottom: 15px;
-}
-
-.leyenda {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    font-size: 0.9rem;
-}
-
-.item-leyenda {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.item-leyenda .color {
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-    border: 1px solid rgba(0,0,0,0.1);
-}
+.leyenda { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; font-size: 0.9rem; margin-bottom: 20px;}
+.item-leyenda { display: flex; align-items: center; gap: 8px; }
+.item-leyenda .color { width: 20px; height: 20px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.1); }
 
 .color.bloqueado { background-color: #e0e0e0; }
-.color.disponible { background-color: #bae1ff; } /* Celeste pastel */
-.color.aprobado { background-color: #fbe3e3; }
+.color.disponible { background-color: #bae1ff; }
+.color.reprobado { background-color: #ffdfba; } /* Naranja pastel */
+.color.aprobado { background-color: #fbe3e3; } 
 
-#malla-container {
-    display: flex;
-    gap: 15px;
-    overflow-x: auto;
-    padding-bottom: 20px;
-}
-
-.nivel-columna {
-    flex: 0 0 220px;
-    background-color: #f9f4ff;
-    border-radius: 12px;
-    padding: 15px;
-    border: 2px solid #d5baff; /* Morado pastel */
-}
-
-.nivel-titulo {
-    text-align: center;
-    background-color: #d5baff;
-    color: #4a3b69;
-    padding: 8px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    font-weight: bold;
-}
-
-.ramo {
-    padding: 12px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    text-align: center;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 60px;
-    user-select: none;
-}
-
-/* Estados de los ramos */
-.ramo.bloqueado {
-    background-color: #e0e0e0;
-    color: #7a7a7a;
-    cursor: not-allowed;
-    opacity: 0.7;
-}
-
-.ramo.disponible {
-    background-color: #bae1ff; 
-    color: #004b80;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(186, 225, 255, 0.4);
-}
-
-.ramo.disponible:hover {
-    transform: translateY(-2px);
-    filter: brightness(0.95);
-}
-
-.ramo.aprobado {
-    background-color: #fbe3e3;
-    color: #800015;
-    cursor: pointer;
-    box-shadow: inset 0 3px 5px rgba(0,0,0,0.1);
-}
-
-.ramo.aprobado:hover {
-    filter: brightness(0.95);
-}
-/* Nuevo estilo para que el nombre y la nota se apilen */
-.ramo {
-    flex-direction: column;
-}
-
-/* Estilo para el cuadrito de la nota */
-.nota-ramo {
-    display: none;
-    background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 4px;
-    padding: 2px 8px;
-    margin-top: 8px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: #5a4b81;
-}
+/* Recuadro de los Promedios */
 #ppa-container {
+    display: flex;
+    justify-content: space-around;
     background-color: #d5baff;
     color: #4a3b69;
     padding: 15px;
     border-radius: 8px;
     text-align: center;
-    font-size: 1.2rem;
     margin: 0 auto 20px auto;
-    max-width: 350px;
+    max-width: 500px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
+.stat-box span { font-size: 1.4rem; font-weight: bold; color: #800015; display: block; margin-top: 5px;}
 
-#ppa-container span {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #800015;
+#malla-container { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 20px; }
+.nivel-columna { flex: 0 0 220px; background-color: #f9f4ff; border-radius: 12px; padding: 15px; border: 2px solid #d5baff; }
+.nivel-titulo { text-align: center; background-color: #d5baff; color: #4a3b69; padding: 8px; border-radius: 8px; margin-bottom: 15px; font-weight: bold; }
+
+.ramo {
+    padding: 12px; margin-bottom: 10px; border-radius: 8px; font-size: 0.85rem; font-weight: 500;
+    text-align: center; transition: all 0.3s ease; border: 1px solid rgba(0,0,0,0.1);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60px; user-select: none;
 }
+.ramo.bloqueado { background-color: #e0e0e0; color: #7a7a7a; cursor: not-allowed; opacity: 0.7; }
+.ramo.disponible { background-color: #bae1ff; color: #004b80; cursor: pointer; box-shadow: 0 4px 6px rgba(186, 225, 255, 0.4); }
+.ramo.disponible:hover { transform: translateY(-2px); filter: brightness(0.95); }
+.ramo.reprobado { background-color: #ffdfba; color: #b35900; cursor: pointer; box-shadow: inset 0 3px 5px rgba(0,0,0,0.1); }
+.ramo.aprobado { background-color: #fbe3e3; color: #800015; cursor: pointer; box-shadow: inset 0 3px 5px rgba(0,0,0,0.1); }
+.ramo.reprobado:hover, .ramo.aprobado:hover { filter: brightness(0.95); }
+
+.nota-ramo { display: none; background-color: rgba(255, 255, 255, 0.6); border-radius: 4px; padding: 2px 8px; margin-top: 8px; font-size: 0.8rem; font-weight: bold; color: #5a4b81; }
