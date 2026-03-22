@@ -9,7 +9,7 @@ h1 { color: #5a4b81; margin-bottom: 15px; }
 
 .color.bloqueado { background-color: #e0e0e0; }
 .color.disponible { background-color: #a4fff7; }
-.color.reprobado { background-color: #f2dcdb; }
+.color.reprobado { background-color: #ffb5c0; }
 .color.aprobado { background-color: #53f094; }
 
 /* Recuadro de los Promedios */
@@ -45,7 +45,7 @@ h1 { color: #5a4b81; margin-bottom: 15px; }
 }
 .ramo.disponible:hover { transform: translateY(-2px); filter: brightness(0.95); }
 .ramo.reprobado { 
-    background-color: #f2dcdb; 
+    background-color: #ffb5c0; 
     color: #800015; 
     cursor: pointer; 
     box-shadow: inset 0 3px 5px rgba(0,0,0,0.1); 
