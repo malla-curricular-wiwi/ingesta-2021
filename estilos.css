@@ -116,3 +116,19 @@ h1 {
 .ramo.aprobado:hover {
     filter: brightness(0.95);
 }
+/* Nuevo estilo para que el nombre y la nota se apilen */
+.ramo {
+    flex-direction: column;
+}
+
+/* Estilo para el cuadrito de la nota */
+.nota-ramo {
+    display: none;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin-top: 8px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #5a4b81;
+}
