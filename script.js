@@ -69,10 +69,14 @@ const ramosMalla = [
     { nivel: 10, id: 'comint', nombre: 'Comunicación Integral y Liderazgo', pre: [...n1, ...n2, ...n3, ...n4, ...n5, ...n6, ...n7, ...n8, ...n9] }
 ];
 
-// Estado global de ramos aprobados
+// AQUÍ ESTÁ LA MAGIA DE LA MEMORIA:
+// Intentamos cargar los datos guardados en el navegador. Si no hay nada, empezamos de cero.
 let aprobados = new Set();
+const memoriaGuardada = localStorage.getItem('mallaEstadisticaProgreso');
+if (memoriaGuardada) {
+    aprobados = new Set(JSON.parse(memoriaGuardada));
+}
 
-// Función principal para iniciar la malla
 function init() {
     renderizarMalla();
     actualizarEstados();
@@ -105,41 +109,36 @@ function renderizarMalla() {
     }
 }
 
-// Verifica si un ramo cumple todos sus pre-requisitos
 function cumpleRequisitos(idRamo) {
     const ramo = ramosMalla.find(r => r.id === idRamo);
     if (!ramo) return false;
     return ramo.pre.every(preReq => aprobados.has(preReq));
 }
 
-// Maneja el clic en un ramo
 function toggleRamo(idRamo) {
     if (aprobados.has(idRamo)) {
-        // Si está aprobado, lo desmarcamos
         aprobados.delete(idRamo);
     } else {
-        // Solo lo podemos aprobar si cumple los requisitos
         if (cumpleRequisitos(idRamo)) {
             aprobados.add(idRamo);
         }
     }
     
-    // Cascada de validación: si desaprobamos algo, debemos bloquear todo lo que dependía de ello
     let huboCambios = true;
     while (huboCambios) {
         huboCambios = false;
         for (let id of aprobados) {
             if (!cumpleRequisitos(id)) {
                 aprobados.delete(id);
-                huboCambios = true; // Se desaprobó algo, volvemos a revisar todo
+                huboCambios = true;
             }
         }
     }
 
     actualizarEstados();
+    guardarEnMemoria(); // Cada vez que haces clic, guardamos el nuevo estado
 }
 
-// Actualiza las clases CSS en base al estado actual
 function actualizarEstados() {
     ramosMalla.forEach(ramo => {
         const elemento = document.getElementById(ramo.id);
@@ -154,5 +153,9 @@ function actualizarEstados() {
     });
 }
 
-// Iniciar al cargar
+// Función que toma tus ramos aprobados y los guarda en el navegador
+function guardarEnMemoria() {
+    localStorage.setItem('mallaEstadisticaProgreso', JSON.stringify(Array.from(aprobados)));
+}
+
 document.addEventListener('DOMContentLoaded', init);
