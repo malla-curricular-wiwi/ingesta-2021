@@ -231,7 +231,7 @@ function actualizarCalculos() {
 
     ppaContainer.innerHTML = `
         <div class="stat-box">
-            PPA (Intercambio)
+            PPA
             <span>${valPPA}</span>
         </div>
         <div class="stat-box">
