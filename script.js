@@ -1,6 +1,6 @@
 const n1 = ['alg1', 'cal1', 'ipe1', 'tdh'];
 const n2 = ['ing1', 'alg2', 'cal2', 'ipe2', 'comp1', 'teoe'];
-const n3 = ['ing2', 'alglin', 'cal3', 'calprob', 'comp2', 'uso'];
+const n3 = ['ing2', 'alglin', 'cal3', 'calprob', 'comp2', 'uso', 'port1']; // Aquí agregamos port1 a la lista del nivel 3
 const n4 = ['ing3', 'compcal', 'infest', 'comp3', 'fis', 'ici'];
 const n5 = ['ing4', 'teoprob', 'mues', 'modlin', 'enp'];
 const n6 = ['procest', 'dae', 'metmul', 'simest', 'etica'];
@@ -9,25 +9,28 @@ const n8 = ['indlab', 'tal1', 'elec2', 'elec3', 'concos'];
 const n9 = ['tal2', 'elec4', 'sem1', 'evaproy'];
 
 const ramosMalla = [
-    { nivel: 1, id: 'alg1', nombre: 'Álgebra 1', creditos: 8, pre: [] },
+    { nivel: 1, id: 'alg1', nombre: 'Álgebra 1', creditos: 7, pre: [] },
     { nivel: 1, id: 'cal1', nombre: 'Cálculo 1', creditos: 8, pre: [] },
-    { nivel: 1, id: 'ipe1', nombre: 'Introducción a la Probabilidad y Estadística 1', creditos: 8, pre: [] },
-    { nivel: 1, id: 'tdh', nombre: 'Taller de Desarrollo de Habilidades', creditos: 3, pre: [] },
+    { nivel: 1, id: 'ipe1', nombre: 'Introducción a la Probabilidad y Estadística 1', creditos: 6, pre: [] },
+    { nivel: 1, id: 'tdh', nombre: 'Taller de Desarrollo de Habilidades', creditos: 2, pre: [] },
     { nivel: 2, id: 'ing1', nombre: 'Inglés 1', creditos: 3, pre: ['tdh'] },
-    { nivel: 2, id: 'alg2', nombre: 'Álgebra 2', creditos: 8, pre: ['alg1'] },
-    { nivel: 2, id: 'cal2', nombre: 'Cálculo 2', creditos: 8, pre: ['cal1'] },
+    { nivel: 2, id: 'alg2', nombre: 'Álgebra 2', creditos: 7, pre: ['alg1'] },
+    { nivel: 2, id: 'cal2', nombre: 'Cálculo 2', creditos: 7, pre: ['cal1'] },
     { nivel: 2, id: 'ipe2', nombre: 'Introducción a la Probabilidad y Estadística 2', creditos: 6, pre: ['ipe1'] },
-    { nivel: 2, id: 'comp1', nombre: 'Computación 1', creditos: 6, pre: ['alg1'] },
-    { nivel: 2, id: 'teoe', nombre: 'Técnicas de la Expresión Oral y Escritas', creditos: 4, pre: ['tdh'] },
+    { nivel: 2, id: 'comp1', nombre: 'Computación 1', creditos: 5, pre: ['alg1'] },
+    { nivel: 2, id: 'teoe', nombre: 'Técnicas de la Expresión Oral y Escritas', creditos: 2, pre: ['tdh'] },
+    
     { nivel: 3, id: 'ing2', nombre: 'Inglés 2', creditos: 3, pre: ['ing1'] },
     { nivel: 3, id: 'alglin', nombre: 'Álgebra Lineal', creditos: 7, pre: ['alg2'] },
     { nivel: 3, id: 'cal3', nombre: 'Cálculo 3', creditos: 7, pre: ['cal2'] },
     { nivel: 3, id: 'calprob', nombre: 'Cálculo de Probabilidades', creditos: 6, pre: ['ipe2', 'cal2'] },
-    { nivel: 3, id: 'comp2', nombre: 'Computación 2', creditos: 7, pre: ['comp1'] },
+    { nivel: 3, id: 'comp2', nombre: 'Computación 2', creditos: 5, pre: ['comp1'] },
     { nivel: 3, id: 'uso', nombre: 'Uso de Software Estadístico', creditos: 2, pre: ['ipe2'] },
+    { nivel: 3, id: 'port1', nombre: 'Portugués 1', creditos: 3, pre: [] }, // <-- ¡Aquí está tu nuevo ramo!
+    
     { nivel: 4, id: 'ing3', nombre: 'Inglés 3', creditos: 3, pre: ['ing2'] },
     { nivel: 4, id: 'compcal', nombre: 'Complementos de Cálculo', creditos: 7, pre: ['cal3', 'alglin'] },
-    { nivel: 4, id: 'infest', nombre: 'Inferencia Estadística', creditos: 6, pre: ['calprob'] },
+    { nivel: 4, id: 'infest', nombre: 'Inferencia estadística', creditos: 6, pre: ['calprob'] },
     { nivel: 4, id: 'comp3', nombre: 'Computación 3', creditos: 5, pre: ['comp2'] },
     { nivel: 4, id: 'fis', nombre: 'Física General', creditos: 4, pre: ['cal3', 'alglin'] },
     { nivel: 4, id: 'ici', nombre: 'Introducción a las Ciencias de la Ingeniería', creditos: 5, pre: ['alglin'] },
@@ -59,7 +62,6 @@ const ramosMalla = [
     { nivel: 10, id: 'comint', nombre: 'Comunicación Integral y Liderazgo', creditos: 2, pre: [...n1, ...n2, ...n3, ...n4, ...n5, ...n6, ...n7, ...n8, ...n9] }
 ];
 
-// La memoria ahora guarda listas de notas. Ej: { 'alg1': [3.5, 5.2] }
 let historial = {}; 
 const memoriaGuardada = localStorage.getItem('mallaUSACHHistorial');
 if (memoriaGuardada) {
@@ -100,7 +102,6 @@ function renderizarMalla() {
     }
 }
 
-// Verifica si todos los pre-requisitos tienen al menos UNA nota >= 4.0
 function cumpleRequisitos(idRamo) {
     const ramo = ramosMalla.find(r => r.id === idRamo);
     if (!ramo) return false;
@@ -119,7 +120,6 @@ function toggleRamo(idRamo) {
     const estaAprobado = notas.length > 0 && Math.max(...notas) >= 4.0;
 
     if (estaAprobado) {
-        // Si ya lo pasó, al hacer clic le preguntamos si quiere borrarlo
         let resp = confirm(`Ya tienes aprobado ${ramoInfo.nombre}.\n¿Quieres borrar TODO el registro de notas de este ramo para reiniciar?`);
         if (resp) {
             delete historial[idRamo];
@@ -127,7 +127,6 @@ function toggleRamo(idRamo) {
             return;
         }
     } else {
-        // Si está disponible o está reprobado (dejando meter más notas)
         if (cumpleRequisitos(idRamo)) {
             let mensaje = notas.length > 0 
                 ? `Reprobaste ${ramoInfo.nombre} con nota(s): ${notas.join(' y ')}.\nIngresa tu NUEVA nota:`
@@ -149,11 +148,10 @@ function toggleRamo(idRamo) {
                 return;
             }
         } else {
-            return; // Bloqueado, no hace nada
+            return; 
         }
     }
     
-    // Cascada: Si borraste un ramo, borra los que dependían de él
     let huboCambios = true;
     while (huboCambios) {
         huboCambios = false;
@@ -184,13 +182,11 @@ function actualizarEstados() {
                 elemento.className = 'ramo reprobado';
             }
             
-            // Revisa cada nota y le pone rojo si es menor a 4.0, o negro si es azul
             const notasConColor = notas.map(nota => {
                 const colorTexto = nota < 4.0 ? '#cc0000' : '#000000'; 
                 return `<span style="color: ${colorTexto};">${nota.toFixed(1)}</span>`;
             });
             
-            // Pega las notas coloreadas en el cuadrito usando innerHTML
             elementoNota.innerHTML = `Notas: ${notasConColor.join(' | ')}`;
             elementoNota.style.display = 'block';
         } else if (cumpleRequisitos(ramo.id)) {
@@ -213,11 +209,9 @@ function actualizarCalculos() {
         const ramo = ramosMalla.find(r => r.id === idRamo);
         if (ramo && ramo.creditos) {
             notas.forEach(nota => {
-                // Para el PPA (Todo el historial)
                 sumaPPA += nota * ramo.creditos;
                 creditosPPA += ramo.creditos;
                 
-                // Para el Promedio de Aprobación (Solo notas >= 4.0)
                 if (nota >= 4.0) {
                     sumaAprob += nota * ramo.creditos;
                     creditosAprob += ramo.creditos;
