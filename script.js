@@ -9,16 +9,16 @@ const n8 = ['indlab', 'tal1', 'elec2', 'elec3', 'concos'];
 const n9 = ['tal2', 'elec4', 'sem1', 'evaproy'];
 
 const ramosMalla = [
-    { nivel: 1, id: 'alg1', nombre: 'Álgebra 1', creditos: 7, pre: [] },
+    { nivel: 1, id: 'alg1', nombre: 'Álgebra 1', creditos: 8, pre: [] },
     { nivel: 1, id: 'cal1', nombre: 'Cálculo 1', creditos: 8, pre: [] },
     { nivel: 1, id: 'ipe1', nombre: 'Introducción a la Probabilidad y Estadística 1', creditos: 6, pre: [] },
-    { nivel: 1, id: 'tdh', nombre: 'Taller de Desarrollo de Habilidades', creditos: 2, pre: [] },
-    { nivel: 2, id: 'ing1', nombre: 'Inglés 1', creditos: 3, pre: ['tdh'] },
+    { nivel: 1, id: 'tdh', nombre: 'Taller de Desarrollo de Habilidades', creditos: 4, pre: [] },
+    { nivel: 2, id: 'ing1', nombre: 'Inglés 1', creditos: 4, pre: ['tdh'] },
     { nivel: 2, id: 'alg2', nombre: 'Álgebra 2', creditos: 7, pre: ['alg1'] },
     { nivel: 2, id: 'cal2', nombre: 'Cálculo 2', creditos: 7, pre: ['cal1'] },
     { nivel: 2, id: 'ipe2', nombre: 'Introducción a la Probabilidad y Estadística 2', creditos: 6, pre: ['ipe1'] },
-    { nivel: 2, id: 'comp1', nombre: 'Computación 1', creditos: 5, pre: ['alg1'] },
-    { nivel: 2, id: 'teoe', nombre: 'Técnicas de la Expresión Oral y Escritas', creditos: 2, pre: ['tdh'] },
+    { nivel: 2, id: 'comp1', nombre: 'Computación 1', creditos: 6, pre: ['alg1'] },
+    { nivel: 2, id: 'teoe', nombre: 'Técnicas de la Expresión Oral y Escritas', creditos: 4, pre: ['tdh'] },
     
     { nivel: 3, id: 'ing2', nombre: 'Inglés 2', creditos: 3, pre: ['ing1'] },
     { nivel: 3, id: 'alglin', nombre: 'Álgebra Lineal', creditos: 7, pre: ['alg2'] },
